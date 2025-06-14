@@ -1,0 +1,47 @@
+.hero-banner {
+  background: url('../../svg-Images/HeroBanner.svg') no-repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+  color: var(--bg-color);
+  position: relative;
+}
+
+.hero-banner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); 
+}
+
+.hero-banner .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.form-control{
+    height: 60px;
+}
+
+.find-btn {
+  background-color: #28a745; /* You can adjust the button color */
+  border-color: #28a745;
+}
+
+.find-btn:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}

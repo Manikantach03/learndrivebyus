@@ -1,0 +1,46 @@
+.custom-navbar {
+  background-color: var(--primary-color);
+  padding: 10px 60px 10px 60px;
+  font-family: var(--font-family);
+
+}
+
+.custom-select {
+  background-color: transparent;
+  border: 1px solid #c9aee6;
+  color: var(--bg-color);
+  height: 38px;
+  font-family: var(--font-family);
+
+}
+
+.custom-select option {
+  color: black;
+}
+
+.icon-button {
+  background-color: white;
+  color: #7b50a1;
+  border-radius: 8px;
+  padding: 20px;
+  border: none;
+}
+.icon-button:hover {
+  background-color: white;
+}
+
+.login-button {
+  background-color: white;
+  color: #7b50a1;
+  border-radius: 8px;
+  padding: 10px;
+  font-weight: 500;
+  border: none;
+  display: flex;
+  font-family: var(--font-family);
+}
+
+
+.login-button:hover {
+  background-color: white;
+}
