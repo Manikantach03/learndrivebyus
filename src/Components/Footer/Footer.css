@@ -1,0 +1,51 @@
+/* src/Components/Footer.css */
+.footer-section {
+  background-color: #1f1f1f;
+  color: #ffffff;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.footer-section a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: #1fbfc2;
+  text-decoration: underline;
+}
+
+.footer-section h5 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.footer-section p, 
+.footer-section li {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-section .social-icons a {
+  margin-right: 10px;
+  font-size: 18px;
+  color: #ffffff;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.footer-section .social-icons a:hover {
+  color: #1fbfc2;
+}
+
+/* Responsive tweaks */
+@media (max-width: 767px) {
+  .footer-section {
+    text-align: center;
+  }
+
+  .footer-section .social-icons {
+    justify-content: center;
+  }
+}

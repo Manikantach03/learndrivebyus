@@ -1,4 +1,3 @@
-// src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Login-And-Reg/Login/Login";
@@ -10,10 +9,10 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<SchoolDrivingHome />} /> {/* Show dashboard as homepage */}
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegistrationForm />} />
-        <Route path="/dashboard" element={<SchoolDrivingHome />} />
-        {/* <Route path="/dashboard" element={<SchoolDrivingHome />} /> */}
+        {/* /* <Route path="/dashboard" element={<SchoolDrivingHome />} />* */}
       </Routes>
     </Router>
   );
