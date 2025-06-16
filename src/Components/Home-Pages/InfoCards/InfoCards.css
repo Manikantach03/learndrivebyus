@@ -1,0 +1,34 @@
+.info-section {
+  background-color: #ffffff;
+}
+
+.info-card {
+  background-color: #f3fdf9;
+  border: 1px solid #d1f0e6;
+  border-radius: 12px;
+  transition: box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.info-card:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.info-icon {
+  font-size: 30px;
+  color: #3ec8a7;
+}
+
+.info-title {
+  font-weight: 600;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  color: #121212;
+  margin-top: 12px;
+}
+
+.info-subtitle {
+  color: #6c757d;
+  font-size: 14px;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  margin-top: 4px;
+}
