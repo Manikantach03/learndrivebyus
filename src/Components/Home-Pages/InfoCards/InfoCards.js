@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { FaThLarge, FaCalendarAlt, FaCar, FaIdCard } from 'react-icons/fa';
 import Tilt from 'react-parallax-tilt';
 import { motion } from 'framer-motion';
 import './InfoCards.css';
