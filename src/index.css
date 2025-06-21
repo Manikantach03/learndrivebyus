@@ -1,12 +1,8 @@
 :root {
-  --primary-color: #7450a8;
+  --primary-color: #7b50a1;
   --bg-color: #f7f5fb;
-  --white-color: #ffffff;
-  --text-color: #121212;
+  --text-color: #333;
   --accent-color: #007bff;
-  --green-color: #28a745;
-  --light-green-color: #84ebc0;
-  --text-light-gray-color : #727271;
 
-  --font-family: "IBM Plex Sans JP";
+   --font-family: 'IBM Plex Sans JP', sans-serif;
 }
