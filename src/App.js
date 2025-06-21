@@ -1,12 +1,20 @@
+// src/App.js
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./Login-And-Reg/Login/Login";
+import RegistrationForm from "./Login-And-Reg/Reg/RegistrationForm";
 import "bootstrap/dist/css/bootstrap.min.css";
-import AppRoutes from "./router";
+import SchoolDrivingHome from './Components/Home';
 
 function App() {
   return (
     <Router>
-      <AppRoutes />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<RegistrationForm />} />
+        <Route path="/dashboard" element={<SchoolDrivingHome />} />
+        {/* <Route path="/dashboard" element={<SchoolDrivingHome />} /> */}
+      </Routes>
     </Router>
   );
 }

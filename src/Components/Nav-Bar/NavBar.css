@@ -14,8 +14,6 @@
 
 }
 
-
-
 .custom-select option {
   color: black;
 }
@@ -29,11 +27,6 @@
 }
 .icon-button:hover {
   background-color: white;
-}
-
-.nav-link {
-  font-size: 16;
-  font-family: var(--font-family);
 }
 
 .login-button {
