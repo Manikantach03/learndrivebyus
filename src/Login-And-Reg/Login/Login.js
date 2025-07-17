@@ -1,24 +1,25 @@
-// src/components/Login.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import authService from '../../Services/authService';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(''); // reset error state
 
-    if (email === 'admin@example.com' && password === 'password123') {
-      alert('Login successful!');
-      navigate('/dashboard'); 
-    } else {
-      setError('Invalid email or password');
+    try {
+      const credentials = { email, password };
+      const data = await authService.login(credentials);
+      console.log('Login Success:', data);
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err.message || 'Login failed');
     }
   };
-
   return (
     <div className="container d-flex align-items-center justify-content-center min-vh-100">
       <div className="card p-4 shadow" style={{ maxWidth: '400px', width: '100%' }}>

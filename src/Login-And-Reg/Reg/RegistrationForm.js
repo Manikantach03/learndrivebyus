@@ -1,166 +1,103 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import authService from '../../Services/authService';
 function RegistrationForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    age: "",
-    address: "",
-    parentName: "",
-    userType: "Student",
-    preferredTime: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    phoneNumber: '',
+    location: '',
+    gender: 'Female',
+    accountType: 'User',
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Basic validation could be improved
-    setSubmitted(true);
-    console.log("Form Submitted:", formData);
-    alert("Registration submitted successfully!");
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError('');
+  setSuccess('');
+
+  try {
+    await authService.register(formData);
+    setSuccess('Registration successful!');
+    navigate('/login');
+  } catch (err) {
+    setError(err.message || 'Something went wrong');
+  }
+};
+
 
   return (
-    <div className="container mt-5 mb-5">
-      <div className="row justify-content-center">
-        <div className="col-md-8">
-          <div className="card shadow p-4">
-            <h3 className="text-center mb-4">
-              Driving School Registration Form
-            </h3>
-            <form onSubmit={handleSubmit} noValidate>
-              <div className="row">
-                <div className="mb-3 col-md-6">
-                  <label className="form-label">Full Name</label>
-                  <input
-                    type="text"
-                    name="fullName"
-                    className="form-control"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+    <div className="container d-flex align-items-center justify-content-center min-vh-100">
+      <div className="card p-4 shadow" style={{ maxWidth: '500px', width: '100%' }}>
+        <h3 className="text-center mb-3">Register</h3>
 
-                <div className="mb-3 col-md-6">
-                  <label className="form-label">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    className="form-control"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+        {error && <div className="alert alert-danger">{error}</div>}
+        {success && <div className="alert alert-success">{success}</div>}
 
-                <div className="mb-3 col-md-6">
-                  <label className="form-label">Phone Number</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    className="form-control"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="mb-3 col-md-6">
-                  <label className="form-label">Age</label>
-                  <input
-                    type="number"
-                    name="age"
-                    className="form-control"
-                    value={formData.age}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="mb-3 col-md-6">
-                  <label className="form-label">Address</label>
-                  <input
-                    type="text"
-                    name="address"
-                    className="form-control"
-                    value={formData.address}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="mb-3 col-md-6">
-                  <label className="form-label">Parent/Guardian Name</label>
-                  <input
-                    type="text"
-                    name="parentName"
-                    className="form-control"
-                    value={formData.parentName}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-
-                <div className="mb-3 col-md-6">
-                  <label className="form-label">User Type</label>
-                  <select
-                    className="form-select"
-                    name="userType"
-                    value={formData.userType}
-                    onChange={handleChange}
-                  >
-                    <option value="Student">Student</option>
-                    <option value="Parent">Parent</option>
-                  </select>
-                </div>
-
-                <div className="mb-3 col-md-6">
-                  <label className="form-label">Preferred Training Time</label>
-                  <input
-                    type="text"
-                    name="preferredTime"
-                    className="form-control"
-                    placeholder="e.g. Weekends, Evenings"
-                    value={formData.preferredTime}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-
-              <div className="d-grid">
-                <button type="submit" className="btn btn-success">
-                  Submit Registration
-                </button>
-              </div>
-
-              <div className="text-center">
-                <small>
-                  Already you have account?{" "}
-                  <Link to="/register" className="text-decoration-none">
-                    Register
-                  </Link>
-                </small>
-              </div>
-            </form>
-
-            {submitted && (
-              <div className="alert alert-success mt-4" role="alert">
-                Thank you! Your registration was successful.
-              </div>
-            )}
+        <form onSubmit={handleSubmit}>
+          <div className="row g-2">
+            <div className="col-md-6">
+              <label className="form-label">First Name</label>
+              <input name="firstName" value={formData.firstName} onChange={handleChange} required className="form-control" />
+            </div>
+            <div className="col-md-6">
+              <label className="form-label">Last Name</label>
+              <input name="lastName" value={formData.lastName} onChange={handleChange} required className="form-control" />
+            </div>
           </div>
-        </div>
+
+          <div className="mb-2">
+            <label className="form-label">Email</label>
+            <input type="email" name="email" value={formData.email} onChange={handleChange} required className="form-control" />
+          </div>
+
+          <div className="mb-2">
+            <label className="form-label">Password</label>
+            <input type="password" name="password" value={formData.password} onChange={handleChange} required className="form-control" />
+          </div>
+
+          <div className="mb-2">
+            <label className="form-label">Phone Number</label>
+            <input name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} required className="form-control" />
+          </div>
+
+          <div className="mb-2">
+            <label className="form-label">Location</label>
+            <input name="location" value={formData.location} onChange={handleChange} required className="form-control" />
+          </div>
+
+          <div className="row mb-3">
+            <div className="col">
+              <label className="form-label">Gender</label>
+              <select name="gender" value={formData.gender} onChange={handleChange} className="form-select">
+                <option>Female</option>
+                <option>Male</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div className="col">
+              <label className="form-label">Account Type</label>
+              <select name="accountType" value={formData.accountType} onChange={handleChange} className="form-select">
+                <option>User</option>
+                <option>Instructor</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="d-grid">
+            <button className="btn btn-success" type="submit">Register</button>
+          </div>
+        </form>
       </div>
     </div>
   );
