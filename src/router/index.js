@@ -2,7 +2,7 @@ import { useRoutes,Navigate  } from "react-router-dom";
 import Sidemain from "../Sidemain";
 import Loginnew from "../Loginnew";
 import PrivateRoute from "./PrivateRoute";
-
+import Register from "../Register"
 const AppRoutes = () => {
   const routes = [
        {
@@ -12,6 +12,10 @@ const AppRoutes = () => {
     {
       path: "/login",
       element: <Loginnew />,
+    },
+      {
+      path: "/register",
+      element: <Register/>,
     },
     {
       path: "/dashboard",
