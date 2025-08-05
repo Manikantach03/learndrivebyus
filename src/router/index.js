@@ -1,32 +1,28 @@
-import { useRoutes } from "react-router-dom";
-import Login from "../Login-And-Reg/Login/Login";
-import RegistrationForm from "../Login-And-Reg/Reg/RegistrationForm";
-import SchoolDrivingHome from "../Components/Home";
-import Dashboard from "../Dashboard";
+import { useRoutes,Navigate  } from "react-router-dom";
+import Sidemain from "../Sidemain";
+import Loginnew from "../Loginnew";
+import PrivateRoute from "./PrivateRoute";
 
 const AppRoutes = () => {
   const routes = [
-    {
+       {
       path: "/",
-      element: <SchoolDrivingHome />,
+      element: <Navigate to="/login" replace />,
     },
     {
       path: "/login",
-      element: <Login />,
+      element: <Loginnew />,
     },
     {
-      path: "/register",
-      element: <RegistrationForm />,
-    },
-    
-      {
       path: "/dashboard",
-      element: <Dashboard />
-      }
-
+      element: (
+        <PrivateRoute>
+          <Sidemain />
+        </PrivateRoute>
+      ),
+    },
   ];
 
   return useRoutes(routes);
 };
-
 export default AppRoutes;
