@@ -297,7 +297,7 @@ const DrivingSchoolLogin = () => {
                   type="button"
                   className="btn btn-link p-0 text-decoration-none fw-semibold ms-1 border-0" 
                   style={{ color: '#7450a8' }}
-                  onClick={() => console.log('Sign up clicked')}
+                  onClick={() => navigate('/register')}
                 >
                   Sign up now
                 </button>
