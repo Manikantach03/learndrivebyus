@@ -3,6 +3,7 @@ import Sidemain from "../Sidemain";
 import Loginnew from "../Loginnew";
 import PrivateRoute from "./PrivateRoute";
 import Register from "../Register"
+import ForgotPassword from "../Forgotpassword";
 const AppRoutes = () => {
   const routes = [
        {
@@ -16,6 +17,10 @@ const AppRoutes = () => {
       {
       path: "/register",
       element: <Register/>,
+    },
+        {
+      path: "/forgotpassword",
+      element: <ForgotPassword/>,
     },
     {
       path: "/dashboard",
