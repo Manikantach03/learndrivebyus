@@ -31,30 +31,6 @@ class AuthService {
     }
   };
 
-  // Register API
-//   register = async (userData) => {
-//     try {
-//       const response = await fetch(`${API_BASE_URL}/api/users/register`, {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'Accept': 'application/json'
-//         },
-//         body: JSON.stringify(userData),
-//       });
-
-//       const data = await response.json();
-
-//       if (!response.ok) {
-//         throw new Error(data.message || 'Registration failed');
-//       }
-
-//       return data;
-//     } catch (error) {
-//       console.error('Registration error:', error);
-//       throw error;
-//     }
-//   };
 register = async (userData) => {
   try {
     const response = await fetch(`${API_BASE_URL}/api/users`, {
@@ -227,6 +203,36 @@ resetPasswordWithOtp = async (resetData) => {
     throw error;
   }
 };
+// Change old password
+changeOldPassword = async (passwordData) => {
+  try {
+    const token = this.getToken();
+    if (!token) {
+      throw new Error('No token found');
+    }
+
+    const response = await fetch(`${API_BASE_URL}/api/users/changeOldPassword`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(passwordData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to change old password');
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Change Old Password error:', error);
+    throw error;
+  }
+};
+
 }
 // Create and export a single instance
 const authService = new AuthService();

@@ -12,15 +12,16 @@ import {
   Bell, 
   Settings, 
   User,
-  ChevronDown,
   DollarSign,
   CheckCircle,
-  AlertCircle
-} from 'lucide-react';
+  AlertCircle, Lock, MessageSquare, CreditCard
 
+} from 'lucide-react';
+import ChangePassword from '../ChangePassword';
 const DrivingSchoolDashboard = () => {
-  const [activeView, setActiveView] = useState('user'); // 'user' or 'instructor'
+  const [activeView, setActiveView] = useState('user');
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
 
   const userStats = [
     { icon: BookOpen, title: 'Lessons Completed', value: '12', change: '+2 this week', color: 'success' },
@@ -70,7 +71,7 @@ const DrivingSchoolDashboard = () => {
   );
 
   return (
-    <div className="min-vh-100" style={{ backgroundColor: '#f8f9fa' }}>
+    <><div className="min-vh-100" style={{ backgroundColor: '#f8f9fa' }}>
       {/* Header */}
       <nav className="navbar navbar-expand-lg shadow-sm" style={{ backgroundColor: '#7450a8' }}>
         <div className="container-fluid">
@@ -78,17 +79,17 @@ const DrivingSchoolDashboard = () => {
             <Car className="text-white me-2" size={28} />
             <span className="navbar-brand text-white mb-0 h1 fw-bold">DriveAcademy</span>
           </div>
-          
+
           <div className="d-flex align-items-center">
             {/* View Toggle */}
             <div className="btn-group me-3">
-              <button 
+              <button
                 className={`btn ${activeView === 'user' ? 'btn-light' : 'btn-outline-light'} btn-sm`}
                 onClick={() => setActiveView('user')}
               >
                 Student View
               </button>
-              <button 
+              <button
                 className={`btn ${activeView === 'instructor' ? 'btn-light' : 'btn-outline-light'} btn-sm`}
                 onClick={() => setActiveView('instructor')}
               >
@@ -103,18 +104,81 @@ const DrivingSchoolDashboard = () => {
                 3
               </span>
             </div>
-
             {/* Profile Dropdown */}
-            <div className="dropdown">
-              <button 
+            <div className="dropdown position-relative">
+              <button
                 className="btn btn-link text-white p-0 d-flex align-items-center"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               >
-                <User className="me-2" size={20} />
-                <span className="me-1">{activeView === 'user' ? 'John Doe' : 'Sarah Wilson'}</span>
-                <ChevronDown size={16} />
+                <User className="me-2" size={22} />
               </button>
+
+              {dropdownOpen && (
+                <div
+                  className="dropdown-menu dropdown-menu-end show shadow-sm"
+                  style={{
+                    position: 'absolute',
+                    top: '100%',
+                    right: 0,
+                    marginTop: '8px',
+                    minWidth: '220px',
+                    border: '1px solid #ddd',
+                    borderRadius: '8px',
+                    padding: '0.5rem 0',
+                    zIndex: 999,
+                    backgroundColor: '#fff'
+                  }}
+                >
+                  {/* User Info */}
+                  <div className="px-3 py-2 border-bottom">
+                    <div className="fw-bold">{activeView === 'user' ? 'John Doe' : 'Sarah Wilson'}</div>
+                    <small className="text-muted">{activeView === 'user' ? 'Student' : 'Instructor'}</small>
+                  </div>
+                  {/* Menu Items with Hover */}
+                  <button
+                    className="dropdown-item d-flex align-items-center custom-hover"
+                    onClick={() => {
+                      setIsChangePasswordOpen(true);
+                      setDropdownOpen(false);
+                    } }>
+                    <Lock size={16} className="me-2 text-secondary" />
+                    Change Password
+                  </button>
+                  <button
+                    className="dropdown-item d-flex align-items-center custom-hover"
+                    onClick={() => console.log('Feedback')}
+                  >
+                    <MessageSquare size={16} className="me-2 text-secondary" />
+                    Feedback
+                  </button>
+                  <button
+                    className="dropdown-item d-flex align-items-center custom-hover"
+                    onClick={() => console.log('Payments')}
+                  >
+                    <CreditCard size={16} className="me-2 text-secondary" />
+                    Payments
+                  </button>
+                  <button
+                    className="dropdown-item d-flex align-items-center custom-hover"
+                    onClick={() => console.log('Settings')}
+                  >
+                    <Settings size={16} className="me-2 text-secondary" />
+                    Settings
+                  </button>
+                </div>
+              )}
             </div>
+            <style>
+              {`
+    .custom-hover:hover {
+      background-color: #7450a8 !important;
+      color: white !important;
+    }
+    .custom-hover:hover svg {
+      color: white !important;
+    }
+  `}
+            </style>
           </div>
         </div>
       </nav>
@@ -129,8 +193,8 @@ const DrivingSchoolDashboard = () => {
                   {activeView === 'user' ? 'Welcome back, John!' : 'Good morning, Sarah!'}
                 </h2>
                 <p className="text-muted mb-0">
-                  {activeView === 'user' 
-                    ? 'Ready for your next driving lesson? Let\'s continue your journey!' 
+                  {activeView === 'user'
+                    ? 'Ready for your next driving lesson? Let\'s continue your journey!'
                     : 'You have 8 lessons scheduled for today. Have a great day teaching!'}
                 </p>
               </div>
@@ -357,7 +421,9 @@ const DrivingSchoolDashboard = () => {
           position: relative;
         }
       `}</style>
-    </div>
+    </div><ChangePassword
+        isOpen={isChangePasswordOpen}
+        onClose={() => setIsChangePasswordOpen(false)} /></>
   );
 };
 

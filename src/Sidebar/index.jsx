@@ -9,24 +9,20 @@ const SidebarBootstrap = ({ active, setActive }) => {
   const [profileOpen, setProfileOpen] = useState(false);
  const { logout } = useAuth();
   const navigate = useNavigate();
-
   const handleLogout = () => {
-    logout(); // This will clear token, user and update context
-    navigate('/login'); // Redirect to login page
+    logout();
+    navigate('/login');
   };
   const toggleSidebar = () => setCollapsed(!collapsed);
 
   return (
     <div className={`d-flex flex-column bg-white border-end vh-100 position-sticky top-0 ${collapsed ? 'sidebar-collapsed' : 'sidebar-expanded'}`} style={{ width: collapsed ? '60px' : '250px', transition: 'width 0.3s ease' }}>
-
-      {/* Header with toggle */}
       <div className="d-flex justify-content-between align-items-center p-3 border-bottom">
         {!collapsed && <h5 className="mb-0">Dashboard</h5>}
         <button onClick={toggleSidebar} className="btn btn-sm btn-light">
           <i className={`bi ${collapsed ? 'bi-chevron-right' : 'bi-chevron-left'}`}></i>
         </button>
       </div>
-
       {/* Nav Links */}
       <ul className="nav flex-column row gx-3 gy-3">
         {[
@@ -39,14 +35,13 @@ const SidebarBootstrap = ({ active, setActive }) => {
             <a
               href="#!"
               onClick={() => setActive(item.path)}
-              className={`nav-link d-flex align-items-center ${active === item.path ? 'active bg-primary-custom text-white' : 'text-dark'}`}
+className={`nav-link sidebar-link d-flex align-items-center ${active === item.path ? 'active bg-primary-custom text-white' : 'text-dark'}`}
             >
               <i className={`bi ${item.icon} me-2`}></i>
               {!collapsed && item.name}
             </a>
           </li>
         ))}
-
         {/* Profile Dropdown */}
         <li className="nav-item">
           <a href="#!" className="nav-link d-flex align-items-center text-dark" onClick={() => setProfileOpen(!profileOpen)}>
@@ -57,7 +52,6 @@ const SidebarBootstrap = ({ active, setActive }) => {
             )}
           </a>
         </li>
-
         {profileOpen && !collapsed && (
           <ul className="nav flex-column ms-4">
             {[
