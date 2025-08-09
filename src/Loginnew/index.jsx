@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
+import { showToast } from "../CustomToast/CustomToast";
 const DrivingSchoolLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -42,6 +43,8 @@ const DrivingSchoolLogin = () => {
 
       await login(credentials);
       navigate("/dashboard", { replace: true });
+      showToast("Login successful!", "success", 5000);
+
     } catch (err) {
     } finally {
       setIsLoading(false);
