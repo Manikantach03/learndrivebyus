@@ -17,7 +17,7 @@ import {
   CreditCard,
 } from "lucide-react";
 import ChangePassword from "../ChangePassword";
-
+import InstructorProfile from "../InstructorProfile";
 const InstructorDashboard = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false);
@@ -79,7 +79,7 @@ const InstructorDashboard = () => {
       status: "confirmed",
     },
   ];
-
+  const [showProfile, setShowProfile] = useState(false);
   const StatCard = ({ icon: Icon, title, value, change, color }) => (
     <div className="col-md-6 col-lg-3 mb-4">
       <div
@@ -192,6 +192,18 @@ const InstructorDashboard = () => {
                       <Lock size={16} className="me-2 text-secondary" />
                       Change Password
                     </button>
+                    
+                      <button
+                      className="dropdown-item d-flex align-items-center custom-hover"
+  onClick={() => setShowProfile(true)}
+                    >
+                      <User
+                        size={16}
+                        className="me-2 text-secondary"
+                      />
+                      Profile
+                    </button>
+
                     <button
                       className="dropdown-item d-flex align-items-center custom-hover"
                       onClick={() => console.log("Feedback")}
@@ -440,6 +452,11 @@ const InstructorDashboard = () => {
         isOpen={isChangePasswordOpen}
         onClose={() => setIsChangePasswordOpen(false)}
       />
+<InstructorProfile
+  isOpen={showProfile}
+  onClose={() => setShowProfile(false)}
+  onSave={(data) => console.log("Saved:", data)}
+/>
     </>
   );
 };
