@@ -3,6 +3,7 @@ import Sidebar from '../Sidebar';
 import BookingSlotPage from '../BookingSlotPage';
 import InstructorDashboard from '../InstructorDashboard';
 import StudentDashboard from '../StudentDashboard';
+import AddSchoolScreen from '../AddSchool';
 
 const Sidemain = () => {
   const [activePage, setActivePage] = useState('home');
@@ -21,14 +22,8 @@ const Sidemain = () => {
         return <h1 className="fs-2">Mybookings</h1>;
       case 'nearby':
         return <h1 className="fs-2">📍 Nearby School</h1>;
-      case 'payments':
-        return <h1 className="fs-2">💳 Payments</h1>;
-      case 'feedback':
-        return <h1 className="fs-2">💬 Feedback</h1>;
-      case 'notification':
-        return <h1 className="fs-2">🔔 Notification</h1>;
-      case 'settings':
-        return <h1 className="fs-2">⚙️ Settings</h1>;
+        case "myschools":
+          return <AddSchoolScreen/>
       default:
         return <h1 className="fs-2">Dashboard</h1>;
     }
