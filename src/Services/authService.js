@@ -232,6 +232,33 @@ changeOldPassword = async (passwordData) => {
     throw error;
   }
 };
+getAllSchools = async () => {
+  try {
+    const token = this.getToken();
+    if (!token) {
+      throw new Error('No token found');
+    }
+
+    const response = await fetch(`${API_BASE_URL}/api/school/`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to fetch schools');
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Get All Schools error:', error);
+    throw error;
+  }
+};
 
 }
 // Create and export a single instance

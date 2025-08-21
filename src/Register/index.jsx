@@ -350,8 +350,8 @@ const DrivingSchoolRegistration = () => {
                     <option value="" disabled>
                       Select Account Type
                     </option>
-                    <option value="User">Student</option>
-                    <option value="Instructor">Instructor</option>
+                    <option value="User">User</option>
+                    <option value="Vendor">Vendor</option>
                   </select>
                 </div>
               </div>

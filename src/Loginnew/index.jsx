@@ -32,24 +32,32 @@ const DrivingSchoolLogin = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    try {
-      const credentials = {
-        email: formData.email,
-        password: formData.password,
-      };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsLoading(true);
+  try {
+    const credentials = {
+      email: formData.email,
+      password: formData.password,
+    };
 
-      await login(credentials);
-      navigate("/dashboard", { replace: true });
-      showToast("Login successful!", "success", 5000);
+    const response = await login(credentials);
 
-    } catch (err) {
-    } finally {
-      setIsLoading(false);
+    if (response?.user?.accountType) {
+      const accountType = response.user.accountType;
+      localStorage.setItem("accountType", accountType);
+      localStorage.setItem("token", response.token);
     }
-  };
+    showToast("Login successful!", "success", 5000);
+    navigate("/dashboard", { replace: true });
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+  
   const features = [
     {
       icon: Shield,
