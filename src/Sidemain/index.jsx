@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from '../Sidebar';
 import BookingSlotPage from '../BookingSlotPage';
-import SchoolList from '../Schools';
 import InstructorDashboard from '../InstructorDashboard';
 import StudentDashboard from '../StudentDashboard';
 
@@ -19,7 +18,7 @@ const Sidemain = () => {
       case 'bookslot':
         return <BookingSlotPage />;
       case 'mybookings':
-        return <SchoolList />;
+        return <h1 className="fs-2">Mybookings</h1>;
       case 'nearby':
         return <h1 className="fs-2">📍 Nearby School</h1>;
       case 'payments':
