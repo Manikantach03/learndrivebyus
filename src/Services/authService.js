@@ -259,7 +259,31 @@ getAllSchools = async () => {
     throw error;
   }
 };
-
+ // addschool
+  addschool= async (schoolData) => {
+    try {
+      const token = this.getToken();
+      if (!token) {
+        throw new Error('No token found');
+      }
+      const response = await fetch(`${API_BASE_URL}/api/school/`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(schoolData),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to add schools');
+      }
+      return data;
+    } catch (error) {
+      console.error('Password change error:', error);
+      throw error;
+    }
+  };
 }
 // Create and export a single instance
 const authService = new AuthService();
